@@ -1,0 +1,168 @@
+@extends('admin.pages.layout.main')
+@section('title', 'Coupons')
+@section('content')
+    <div class="flex flex-col xs:flex-row justify-between items-center  mb-6">
+        <h1 class="text-2xl font-semibold">Coupons</h1>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+            <a href="{{ route('coupon.create') }}" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">+
+                Add Coupons</a>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-md p-4 w-full overflow-x-auto">
+      
+            <table class="min-w-full border-collapse text-sm text-gray-700 data-table">
+                <thead class=" text-black">
+                    <tr>
+                        <th class="border-b border-gray-600 px-4 py-2 text-left whitespace-nowrap">S.No.</th>
+                        <th class="border-b border-gray-600 px-4 py-2 text-left whitespace-nowrap">Coupon Name</th>
+                        <th class="border-b border-gray-600 px-4 py-2 text-left whitespace-nowrap">Coupon Code</th>
+                        <th class="border-b border-gray-600 px-4 py-2 text-left whitespace-nowrap">Coupon Type</th>
+                        <th class="border-b border-gray-600 px-4 py-2 text-left whitespace-nowrap">Min Order Amount</th>
+                        <th class="border-b border-gray-600 px-4 py-2 text-left whitespace-nowrap">Capping</th>
+                        <th class="border-b border-gray-600 px-4 py-2 text-left whitespace-nowrap">Product</th>
+                        <th class="border-b border-gray-600 px-4 py-2 text-left whitespace-nowrap">Status</th>
+                        <th class="border-b border-gray-600 px-4 py-2 text-left whitespace-nowrap">Action</th>
+                    </tr>
+                </thead>
+            </table>
+
+             {{-- delete modal --}}
+        <div id="deleteModal" class="fixed inset-0 flex items-center justify-center z-50   hidden">
+            <div class="absolute inset-0 bg-black opacity-75 backdrop-blur-sm transition-all duration-300"></div>
+           
+            <div class="bg-white rounded-xl w-full max-w-sm shadow-lg p-6 relative">
+                <!-- Close Icon -->
+                <button class="absolute top-4 right-4 text-gray-500 hover:text-black text-2xl cancel-btn cursor-pointer">
+                    &times;
+                </button>
+
+                <!-- Title -->
+                <h2 class="text-lg font-semibold text-gray-800">Delete Confirmation</h2>
+                <hr class="my-4">
+
+                <!-- Icon -->
+                <div class="flex justify-center mb-4">
+                    <div class="bg-red-600 w-20 h-20 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3m5 0H6" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Text -->
+                <p class="text-center text-lg font-semibold text-gray-800 mb-6">
+                    Are you sure to delete this?
+                </p>
+
+                <!-- Buttons -->
+                <div class="flex justify-center gap-4">
+                    <button
+                        class="bg-gray-200 text-gray-800 font-medium px-6 py-2 rounded-md hover:bg-gray-300 cancel-btn cursor-pointer">
+                        Cancel
+                    </button>
+                    <button
+                        class="bg-red-600 text-white font-medium px-6 py-2 rounded-md hover:bg-red-700 confirm-delete-btn cursor-pointer">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @push('scripts')
+        <script>
+              var table;
+            $(document).ready(function() {
+                table = new $('.data-table').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ordering": true,
+                    "bLengthChange": true,
+                    "stateSave": true,
+                    "searching": true,
+                    "info": true,
+                    drawCallback: function() {
+                        $('.data-table tbody tr td').addClass('border-b border-table');
+                    },
+                    "language": {
+                        "searchPlaceholder": "Search Coupon",
+                        "processing": '<i class="fa fa-spinner" aria-hidden="true"></i>',
+                    },
+                    ajax: {
+                        url: "{{ route('coupon.index') }}",
+                    },
+                    "columns": [{
+                            "data": "id",
+                            "render": function(data, type, row, meta) {
+                                return meta.settings._iDisplayStart + meta.row + 1;
+                            }
+                        },
+                        {
+                            data: "coupon_name",
+                        },
+                        {
+                            data: "coupon_code",
+                        },
+                        {
+                            data: "coupon_type"
+                        },
+                        {
+                            data: "min_order_amount"
+                        },
+                        {
+                            data: "capping"
+                        },
+                        {
+                            data: "product_id"
+                        },
+                        {
+                            data: "status"
+                        },
+                        {
+                            data: "action"
+                        },
+                    ]
+                });
+            });
+
+                    // delete modal 
+    function openDeleteModal(slug) {
+        $('#deleteModal').removeClass('hidden');
+        $('#deleteModal').data('delete-id', slug);
+    }
+
+    function closeDeleteModal() {
+        $('#deleteModal').addClass('hidden');
+    }
+
+    // Cancel button event
+    $(document).on('click', '#deleteModal .cancel-btn', function () {
+        closeDeleteModal();
+    });
+
+    $(document).on('click', '#deleteModal .confirm-delete-btn', function () {
+        let slug = $('#deleteModal').data('delete-id');
+        const deleteUrlTemplate = "{{ route('coupon.delete', ['slug' => '___slug___']) }}";
+        $.ajax({
+             url   : deleteUrlTemplate.replace('___slug___', slug),
+             method: "post",
+             content: "json",
+             data: {
+                "_token":  "{{ csrf_token() }}",
+              },
+            success: function (response) {
+                toastr.success(response.message || 'Deleted successfully');
+                closeDeleteModal();
+                table.draw();
+            },
+            error: function () {
+                toastr.error('Failed to delete');
+            }
+        });
+    });
+        </script>
+        
+    @endpush
+@endsection

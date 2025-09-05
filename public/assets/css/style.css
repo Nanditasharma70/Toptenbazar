@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --color-white: #FFFFFF;
+  --color-green: #3BB77E;
+  --color-lightgreen: #45B651;
+  --color-darkgrey: #253D4E;
+  --color-orange: #F18B40;
+  --color-lightorange: #F28B3C;
+  --color-darkorange: #FF6924;
+  --color-lightblack: #00173C;
+  --color-lightgrey: #576A8A;
+  --color-verylightgrey: #666D80;
+  --color-darkblack: #000000;
+  --color-black:#0D0D12;
+
+  --font-subheadingfont: 'Aeonik TRIAL';
+  --font-headingfont: 'Poppins';
+
+  --breakpoint-xs: 300px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+
+/* .my-text-white {
+  color: var(--color-green); 
+} */
+   .rotate-animation {
+    animation: rotate360 1s ease-in-out;
+  }
+
+  @keyframes rotate360 {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+    .bg-lightgreen{
+        background-color: var(--color-lightgreen);
+    }
+
+    .font-headingfont{
+        font-family: var(--font-headingfont);
+    }
+    .text-green{
+        color: var(--color-green);
+    }
+    .text-darkgrey{
+        color: var(--color-darkgrey);
+    }
+    .bg-white{
+        background-color: var(--color-white);
+    }
+    .text-black{
+        color: var(--color-black);
+    }
+    .text-lightorange{
+        color: var(--color-lightorange);
+    }
+    .text-verylightgrey{
+        color: var(--color-verylightgrey);
+    }
