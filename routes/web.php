@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\Category\CatgoryController;
 use App\Http\Controllers\Admin\ChargeConfig\ChargeConfigController;
 use App\Http\Controllers\Admin\Coupon\CouponController;
 use App\Http\Controllers\Admin\Customer\CustomerController;
-use App\Http\Controllers\Admin\Dashboard\HomeController as DashboardHomeController;
+use App\Http\Controllers\Admin\Dashboard\DashboardHomeController;
 use App\Http\Controllers\Admin\Delivery\DeliveryController;
 use App\Http\Controllers\Admin\ImageConfig\ImageConfigController;
 use App\Http\Controllers\Admin\Order\OrderController;
@@ -27,10 +27,13 @@ Route::get('admin/login',[AuthenticateController::class,'loginView'])->name('log
 Route::post('authenticate',[AuthenticateController::class,'authenticate'])->name('authenticate');
 Route::get('/logout',[AuthenticateController::class,'logout'])->name('logout');
 
-Route::prefix('admin')->middleware(['auth:web','role:Admin'])->group(function () {
-    
-    #Admin Dashboard
-    Route::get('dashboard', [DashboardHomeController::class,'dashboard'])->name('dashboard');
+// Route::prefix('admin')->middleware(['auth', 'role:Admin'])->group(function () {
+//     Route::get('dashboard', [DashboardHomeController::class, 'dashboard'])->name('dashboard');
+// });
+Route::prefix('admin')->group(function () {
+    Route::get('dashboard', [DashboardHomeController::class, 'dashboard'])->name('dashboard');
+});
+
 
     #Products route
     Route::group(['prefix' => 'product'], function () {
@@ -162,6 +165,3 @@ Route::prefix('admin')->middleware(['auth:web','role:Admin'])->group(function ()
         Route::post('delete/{slug}',[ImageConfigController::class,'delete'])->name('image-config.delete');
      });
      
-});
-  
-

@@ -61,60 +61,60 @@
         </div>
 
         <!-- Orders -->
-        <div>
+        <!-- <div>
             <a href="{{ route('order.index') }}"
                 class="flex items-center px-4 py-2 mt-0 rounded {{ Route::is('order.index') ? 'bg-green-500 text-white' : 'hover:bg-green-500 hover:text-white' }}">
                 <i class="fas fa-shopping-cart mr-3 text-[16px]"></i>
                 Orders
             </a>
-        </div>
+        </div> -->
 
         <!-- Customers -->
-        <div>
+        <!-- <div>
             <a href="{{ route('customer.index') }}"
                 class="flex items-center px-4 py-2 rounded {{ Route::is('customer.index') ? 'bg-green-500 text-white' : 'hover:bg-green-500 hover:text-white' }}">
                 <i class="fa-solid fa-user text-[16px] mr-3"></i>
                 Customers
             </a>
-        </div>
+        </div> -->
 
         <!-- Delivery Men -->
-        <div>
+        <!-- <div>
             <a href="{{ route('delivery-man.index') }}"
                 class="flex items-center px-4 py-2 rounded {{ Route::is('delivery-man.index') ? 'bg-green-500 text-white' : 'hover:bg-green-500 hover:text-white' }}">
                 <i class="fas fa-user-friends mr-3 text-[16px]"></i>
                 Delivery Men
             </a>
-        </div>
+        </div> -->
 
         <!-- Coupons -->
-        <div>
+        <!-- <div>
             <a href="{{ route('coupon.index') }}"
                 class="flex items-center px-4 py-2 rounded {{ Route::is('coupon.index') ? 'bg-green-500 text-white' : 'hover:bg-green-500 hover:text-white' }}">
                 <i class="fa fa-tags mr-3 text-[16px]"></i>
                 Coupons
             </a>
-        </div>
+        </div> -->
 
         <!-- Charge Config -->
-        <div>
+        <!-- <div>
             <a href="{{ route('charge.index') }}"
                 class="flex items-center px-4 py-2 rounded {{ Route::is('charge.index') ? 'bg-green-500 text-white' : 'hover:bg-green-500 hover:text-white' }}">
                 <i class="fa fa-cogs mr-3 text-[16px]"></i>
                 Charge Config
             </a>
-        </div>
+        </div> -->
 
         <!-- Banner Config -->
-        <div>
+        <!-- <div>
             <a href="{{ route('banner.index') }}"
                 class="flex items-center px-4 py-2 rounded {{ Route::is('banner.index') ? 'bg-green-500 text-white' : 'hover:bg-green-500 hover:text-white' }}">
                 <i class="fas fa-image mr-3 text-[16px]"></i>
                 Banner Config
             </a>
-        </div>
+        </div> -->
 
-        {{-- Image Config --}}
+        <!-- {{-- Image Config --}}
         <div>
             <a href="{{ route('image-config.index') }}"
                 class="flex items-center px-4 py-2 rounded {{ Route::is('image-config.index') ? 'bg-green-500 text-white' : 'hover:bg-green-500 hover:text-white' }}">
@@ -122,10 +122,10 @@
                 Image Config
             </a>
 
-        </div>
+        </div> -->
 
         <!-- Reports -->
-        <div>
+        <!-- <div>
             <button id="reports-toggle"
                 class="w-full flex items-center px-4 py-2 text-gray-600 hover:bg-green-500 hover:text-white rounded focus:outline-none">
                 <i class="fa fa-file-invoice mr-3 text-[16px]"></i>
@@ -150,13 +150,13 @@
                     class="block px-2 py-1 rounded {{ Route::is('delivery-status.index') ? ' text-green-500' : 'hover: hover:text-green-500' }}">Delivery
                     Status</a>
             </div>
-        </div>
+        </div> -->
 
         <!-- Logout -->
-        <a href="{{ route('logout') }}" class="flex items-center px-4 py-2 text-red-500 hover:bg-red-100 rounded">
+        <!-- <a href="{{ route('logout') }}" class="flex items-center px-4 py-2 text-red-500 hover:bg-red-100 rounded">
             <i class="fa fa-sign-out-alt text-[16px] mr-3"></i>
             Logout
-        </a>
+        </a> -->
     </nav>
 </aside>
 

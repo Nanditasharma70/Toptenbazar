@@ -54,7 +54,7 @@ return [
 
         'stack' => [
             'driver' => 'stack',
-            'channels' => explode(',', (string) env('LOG_STACK', 'single')),
+            'channels' => explode(',', env('LOG_STACK', 'single')),
             'ignore_exceptions' => false,
         ],
 
@@ -103,6 +103,12 @@ return [
             ],
             'formatter' => env('LOG_STDERR_FORMATTER'),
             'processors' => [PsrLogMessageProcessor::class],
+        ],
+         'top_ten_bazar' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/Web/top_ten_bazar.log'),
+            'level' => 'info',
+            'days' => 28,
         ],
 
         'syslog' => [

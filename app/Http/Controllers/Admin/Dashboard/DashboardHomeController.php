@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class DashboardHomeController extends Controller
 {
    /**
      * @method dashboard helps to display the dashboard page.

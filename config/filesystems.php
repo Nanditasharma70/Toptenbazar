@@ -59,6 +59,14 @@ return [
             'throw' => false,
             'report' => false,
         ],
+        'customupload' => [
+            'driver' => 'local',
+            'root' => public_path(),
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
 
     ],
 
